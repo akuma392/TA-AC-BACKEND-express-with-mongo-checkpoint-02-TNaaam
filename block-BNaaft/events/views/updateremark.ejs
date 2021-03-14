@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="fullcontent">
+      <div class="headings">
+        <h1>Lists of events</h1>
+        <h2>Welcome to the events Lists.</h2>
+      </div>
+      <div class="formbox1">
+        <form id="form1" action="/remarks/<%= remark.id%>/edit" method="post">
+          <label for="">title</label>
+          <input
+            type="text"
+            name="title"
+            class="asd"
+            value="<%= remark.title%>"
+          />
+          <label for="">author</label>
+          <input
+            type="text"
+            name="author"
+            class="asd"
+            value="<%= remark.author%>"
+          />
+
+          <input
+            id="btn"
+            type="submit"
+            name="submit"
+            value="Update remark "
+            class="mainbox"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

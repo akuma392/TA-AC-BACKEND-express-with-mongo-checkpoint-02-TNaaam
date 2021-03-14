@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script
+      src="https://kit.fontawesome.com/c91808f2e8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- <header>
+      <a href="/"> Home page </a>
+      <a href="/events"> Events </a>
+    </header> -->
+    <div class="fullcontent">
+      <div id="event">
+        <a href="/events"> Go to Events Lists </a>
+      </div>
+      <div class="headings">
+        <h1>Lists of events</h1>
+        <h2>Welcome to the events Lists.</h2>
+      </div>
+
+      <li class="root">
+        <h5><%= event.title%></h5>
+        <p class="summary"><%= event.summary%></p>
+        <p class="host">Host: <span><%= event.host%></span></p>
+        <p class="date">Start date: <span><%= event.start_date%></span></p>
+        <p class="date">End date: <span><%= event.end_date%></span></p>
+
+        <p><span><%= event.category%></span></p>
+        <p class="like">Likes <span><%= event.likes%></span></p>
+
+        <div class="dislike">
+          <a href="/events/<%= event.id%>/likes">
+            <button><i class="far fa-thumbs-up"></i></button>
+          </a>
+          <a href="/events/<%= event.id%>/dislike">
+            <button><i class="far fa-thumbs-down"></i></button>
+          </a>
+        </div>
+        <p class="loc"><%= event.location%></p>
+
+        <div>
+          <a href="/events/<%= event.id%>/edit">
+            <button>edit</button>
+          </a>
+          <a href="/events/<%= event.id%>/delete">
+            <button>Delete</button>
+          </a>
+        </div>
+      </li>
+      <div class="formbox1">
+        <form id="form1" action="/events/<%= event.id%>/remarks" method="post">
+          <label for="">title</label>
+          <input type="text" name="title" class="asd" />
+          <label for="">author</label>
+          <input type="text" name="author" class="asd" />
+          <!-- <label for="">summary</label>
+
+          <textarea
+            name="summary"
+            id=""
+            cols="30"
+            rows="10"
+            class="asd"
+          ></textarea> -->
+          <!-- <label for="">host</label>
+          <input type="text" id="" name="host" class="asd" />
+          <label for="">start_date</label>
+          <input type="date" id="" name="start_date" class="asd" />
+          <label for="">end_date</label>
+          <input type="date" id="" name="end_date" class="asd" />
+          <label for="">category</label>
+          <input type="text" id="" name="category" class="asd" />
+          <label for="">location</label>
+          <input type="text" id="" name="location" class="asd" /> -->
+          <input
+            id="btn"
+            type="submit"
+            name="submit"
+            value="Add remark "
+            class="mainbox"
+          />
+        </form>
+      </div>
+      <ul class="root-remark">
+        <%if(event.remarks.length) { %> <% event.remarks.forEach(remark => { %>
+        <li id="remark">
+          <h5><%= remark.title%></h5>
+
+          <p class="host">Remark by: <span><%= remark.author%></span></p>
+
+          <p class="like">Likes <span><%= remark.likes%></span></p>
+          <div class="dislike">
+            <a href="/remarks/<%= remark.id%>/likes">
+              <i class="far fa-thumbs-up"></i>
+            </a>
+            <a href="/remarks/<%= remark.id%>/dislikes">
+              <i class="far fa-thumbs-down"></i>
+            </a>
+          </div>
+
+          <div class="edit">
+            <a href="/remarks/<%= remark.id%>/edit">
+              <button>edit</button>
+            </a>
+            <a href="/remarks/<%= remark.id%>/delete">
+              <button>Delete</button>
+            </a>
+          </div>
+
+          <% })%> <% } else {%>
+          <h2 class="no-remark">No remarks is added yet</h2>
+        </li>
+        <% }%>
+      </ul>
+    </div>
+  </body>
+</html>

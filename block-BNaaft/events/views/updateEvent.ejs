@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="fullcontent">
+      <div class="headings">
+        <h1>Lists of events</h1>
+        <h2>Welcome to the events Lists.</h2>
+      </div>
+      <div class="formbox">
+        <form id="form" action="/events/<%= event.id%>/edit" method="post">
+          <label for="">title</label>
+          <input
+            type="text"
+            name="title"
+            class="asd"
+            value="<%= event.title%>"
+          />
+          <label for="">summary</label>
+          <!-- <input type="text" id="" name="summary" class="asd" /> -->
+          <textarea name="summary" id="" cols="30" rows="10" class="asd">
+<%= event.summary%>"</textarea
+          >
+          <label for="">host</label>
+          <input
+            type="text"
+            id=""
+            name="host"
+            class="asd"
+            value="<%= event.host%>"
+          />
+          <label for="">start_date</label>
+          <input
+            type="date"
+            id=""
+            name="start_date"
+            class="asd"
+            value="<%= event.start_date%>"
+          />
+          <label for="">end_date</label>
+          <input
+            type="date"
+            id=""
+            name="end_date"
+            class="asd"
+            value="<%= event.end_date%>"
+          />
+          <label for="">category</label>
+          <input
+            type="text"
+            id=""
+            name="category"
+            class="asd"
+            value="<%= event.category%>"
+          />
+          <label for="">location</label>
+          <input
+            type="text"
+            id=""
+            name="location"
+            class="asd"
+            value="<%= event.location%>"
+          />
+          <input
+            id="btn"
+            type="submit"
+            name="submit"
+            value="create event "
+            class="mainbox"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
