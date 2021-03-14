@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="fullcontent">
+      <div class="sort">
+        <a href="/date"> Sort by Date </a>
+        <a href="/location"> Sort by location </a>
+        <a href="/category"> Sort by category </a>
+      </div>
+      <div class="headings">
+        <h1>Lists of events</h1>
+        <h2>Welcome to the events Lists.</h2>
+      </div>
+      <ul>
+        <%if(events.length) { %> <% events.forEach(event => { %>
+        <li>
+          <h5><%= event.title%></h5>
+          <p class="summary"><%= event.summary%></p>
+          <p class="host">Host: <span><%= event.host%></span></p>
+          <p class="date">Start date: <span><%= event.start_date%></span></p>
+          <p class="date">End date: <span><%= event.end_date%></span></p>
+
+          <p><span><%= event.category%></span></p>
+          <p class="like">Likes <span><%= event.likes%></span></p>
+          <p class="loc"><%= event.location%></p>
+          <a href="/events/<%= event.id%>">
+            <button>See more</button>
+          </a>
+          <% })%> <% } else {%>
+          <h2 class="no-events">No events available</h2>
+        </li>
+        <% }%>
+      </ul>
+      <a href="/events/create">
+        <button>Create events</button>
+      </a>
+    </div>
+  </body>
+</html>

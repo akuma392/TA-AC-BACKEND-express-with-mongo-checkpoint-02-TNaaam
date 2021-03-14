@@ -1,0 +1,14 @@
+<ul class="root-remark">
+  <%if(remarks.length) { %> <% remarks.forEach(remark => { %>
+  <li>
+    <h5><%= remark.title%></h5>
+
+    <p class="host">Remark by: <span><%= remark.author%></span></p>
+
+    <p class="like">Likes <span><%= remark.likes%></span></p>
+
+    <% })%> <% } else {%>
+    <h2 class="no-remark">No remarks is added yet</h2>
+  </li>
+  <% }%>
+</ul>

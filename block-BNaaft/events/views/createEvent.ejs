@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="fullcontent">
+      <div class="headings">
+        <h1>Lists of events</h1>
+        <h2>Welcome to the events Lists.</h2>
+      </div>
+      <div class="formbox">
+        <form id="form" action="/events" method="post">
+          <label for="">title</label>
+          <input type="text" name="title" class="asd" />
+          <label for="">summary</label>
+          <!-- <input type="text" id="" name="summary" class="asd" /> -->
+          <textarea
+            name="summary"
+            id=""
+            cols="30"
+            rows="10"
+            class="asd"
+          ></textarea>
+          <label for="">host</label>
+          <input type="text" id="" name="host" class="asd" />
+          <label for="">start_date</label>
+          <input type="date" id="" name="start_date" class="asd" />
+          <label for="">end_date</label>
+          <input type="date" id="" name="end_date" class="asd" />
+          <label for="">category</label>
+          <input type="text" id="" name="category" class="asd" />
+          <label for="">location</label>
+          <input type="text" id="" name="location" class="asd" />
+          <input
+            id="btn"
+            type="submit"
+            name="submit"
+            value="create event "
+            class="mainbox"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
