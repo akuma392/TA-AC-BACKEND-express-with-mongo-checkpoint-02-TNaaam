@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var eventRouter = require('./routes/events');
 var remarkRouter = require('./routes/remarks');
+var serachRouter = require('./routes/search');
 
 mongoose.connect(
   'mongodb://localhost/events',
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/events', eventRouter);
 app.use('/remarks', remarkRouter);
+app.use('/search', serachRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
