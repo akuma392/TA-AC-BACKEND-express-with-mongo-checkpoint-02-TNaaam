@@ -158,6 +158,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
 }
 h1 {
   font-size: 2.5rem;
@@ -225,6 +226,7 @@ img {
 }
 
 .fullcontent {
+  position: relative;
   width: 100%;
   min-height: 100vh;
   height: auto;
@@ -589,4 +591,45 @@ li h5 {
 #event a:hover {
   color: green;
   text-decoration: underline;
+}
+#search {
+  position: absolute;
+  top: 5rem;
+  right: 2rem;
+}
+#search input {
+  padding: 0.5rem 0.75rem;
+  outline: none;
+}
+#search button {
+  background: #84fab0;
+  margin-left: 0.75rem;
+  font-weight: 600;
+}
+.footer {
+  color: #fff;
+  /* background: linear-gradient(#f17676, #f17676); */
+  /* background: transparent; */
+  padding: 2rem 0 1rem 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+.footer span {
+  font-size: 1.2rem;
+}
+.footer a {
+  margin-left: 1.5rem;
+}
+.fab {
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+}
+
+#category {
+  position: absolute;
+  top: 10rem;
+  right: 2rem;
 }

@@ -5,6 +5,43 @@ var Remark = require('../models/remark');
 
 /* GET users listing. */
 
+router.post('/search/city', (req, res, next) => {
+  console.log(req.body.search, 'search **********');
+  let city = req.body.search;
+  Event.find({ location: city }).exec((err, events) => {
+    if (err) next(err);
+    res.render('event', { events: events });
+  });
+});
+// search locations
+
+// filters events
+
+router.get('/location', (req, res, next) => {
+  Event.find({})
+    .sort({ location: 1 })
+    .exec((err, events) => {
+      if (err) next(err);
+      res.render('event', { events: events });
+    });
+});
+router.get('/date', (req, res, next) => {
+  Event.find({})
+    .sort({ start_date: 1 })
+    .exec((err, events) => {
+      if (err) next(err);
+      res.render('event', { events: events });
+    });
+});
+router.get('/category', (req, res, next) => {
+  Event.find({})
+    .sort({ category: 1 })
+    .exec((err, events) => {
+      if (err) next(err);
+      res.render('event', { events: events });
+    });
+});
+
 router.get('/', (req, res) => {
   Event.find({}, (err, events, next) => {
     if (err) return next(err);
@@ -16,6 +53,7 @@ router.get('/create', (req, res) => {
 });
 
 router.post('/', (req, res, next) => {
+  console.log(req.body, '*********');
   Event.create(req.body, (err, event) => {
     if (err) next(err);
     res.redirect('/events');

@@ -6,19 +6,34 @@
   <body>
     <div class="fullcontent">
       <div class="sort">
-        <a href="/date"> Sort by Date </a>
-        <a href="/location"> Sort by location </a>
-        <a href="/category"> Sort by category </a>
+        <a href="/"> Home page </a>
+        <a href="/events/date"> Sort by Date </a>
+        <a href="/events/location"> Sort by location </a>
+        <a href="/events/category"> Sort by category </a>
       </div>
       <div class="headings">
         <h1>Lists of events</h1>
         <h2>Welcome to the events Lists.</h2>
       </div>
+      <div id="search">
+        <form action="/events/search/city" method="POST">
+          <input type="text" placeholder="search location" name="search" />
+          <button>Search event by location</button>
+        </form>
+      </div>
+      <div id="category">
+        <li>
+          <a href=""> Birthday </a>
+          <a href=""> marriage </a>
+        </li>
+      </div>
       <ul>
         <%if(events.length) { %> <% events.forEach(event => { %>
         <li>
           <h5><%= event.title%></h5>
-          <p class="summary"><%= event.summary%></p>
+          <p class="summary">
+            <%= event.summary.substring(0,100).concat("....")%>
+          </p>
           <p class="host">Host: <span><%= event.host%></span></p>
           <p class="date">Start date: <span><%= event.start_date%></span></p>
           <p class="date">End date: <span><%= event.end_date%></span></p>
@@ -37,6 +52,7 @@
       <a href="/events/create">
         <button>Create events</button>
       </a>
+      <%- include('../partials/footer') -%>
     </div>
   </body>
 </html>
