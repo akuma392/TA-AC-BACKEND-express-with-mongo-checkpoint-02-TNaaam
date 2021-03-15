@@ -319,8 +319,10 @@ a .mainbox {
 ul {
   list-style: none;
   display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 80%;
+  width: 100%;
 }
 li {
   align-items: center;
@@ -333,6 +335,7 @@ li {
 
   padding: 15px;
   box-shadow: 1px 1px 12px 1px black;
+  border-radius: 2rem;
 }
 ul img {
   width: 100px;
@@ -630,6 +633,24 @@ li h5 {
 
 #category {
   position: absolute;
-  top: 10rem;
-  right: 2rem;
+  top: 20rem;
+  right: 0;
+  /* background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+  max-width: 250px;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+  padding: 1.5rem 4rem 1.5rem 1.5rem;
+  text-align: center;
+}
+#category a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#category a:hover {
+  color: greenyellow;
+  text-decoration: underline;
 }

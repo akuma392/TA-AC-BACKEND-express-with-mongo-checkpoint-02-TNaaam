@@ -5,49 +5,75 @@ var Remark = require('../models/remark');
 
 /* GET users listing. */
 
+// filter category
+
+router.get('/category/:type', (req, res, next) => {
+  // console.log(req.params, 'category***********');
+  let type = req.params.type;
+  let category = [];
+  Event.find({ category: type }).exec((err, events) => {
+    if (err) next(err);
+    res.render('event', { events: events, category: category });
+  });
+});
+
+// search events on locations
 router.post('/search/city', (req, res, next) => {
-  console.log(req.body.search, 'search **********');
+  let category = [];
   let city = req.body.search;
   Event.find({ location: city }).exec((err, events) => {
     if (err) next(err);
-    res.render('event', { events: events });
+    res.render('event', { events: events, category: category });
   });
 });
-// search locations
 
 // filters events
 
+// using location
 router.get('/location', (req, res, next) => {
+  let category = [];
   Event.find({})
     .sort({ location: 1 })
     .exec((err, events) => {
       if (err) next(err);
-      res.render('event', { events: events });
+      res.render('event', { events: events, category: category });
     });
 });
+
+// filter using start date of events
 router.get('/date', (req, res, next) => {
+  let category = [];
   Event.find({})
     .sort({ start_date: 1 })
     .exec((err, events) => {
       if (err) next(err);
-      res.render('event', { events: events });
+      res.render('event', { events: events, category: category });
     });
 });
+
+// sort events using category
 router.get('/category', (req, res, next) => {
+  let category = [];
   Event.find({})
     .sort({ category: 1 })
     .exec((err, events) => {
       if (err) next(err);
-      res.render('event', { events: events });
+      res.render('event', { events: events, category: category });
     });
 });
 
+// show events lists
 router.get('/', (req, res) => {
   Event.find({}, (err, events, next) => {
     if (err) return next(err);
-    res.render('event', { events: events });
+
+    Event.distinct('category', (err, category) => {
+      if (err) return next(err);
+      res.render('event', { events: events, category: category });
+    });
   });
 });
+// create new events in list
 router.get('/create', (req, res) => {
   res.render('createEvent');
 });
@@ -68,6 +94,8 @@ router.post('/', (req, res, next) => {
 //     res.render('singleEvent', { event: event });
 //   });
 // });
+
+// check individual event
 router.get('/:id', (req, res, next) => {
   let id = req.params.id;
   Event.findById(id)
@@ -92,6 +120,8 @@ router.get('/:id', (req, res, next) => {
 //       res.render('singleEvent', { event: event });
 //     });
 // });
+
+// edit events
 router.get('/:id/edit', (req, res, next) => {
   let id = req.params.id;
   Event.findById(id, (err, event) => {
@@ -142,6 +172,7 @@ router.get('/:id/delete', (req, res, next) => {
   Event.findByIdAndDelete(id, (err) => {
     if (err) next(err);
     Remark.deleteMany({ events: id }, (err, info) => {
+      console.log(err, info, '****');
       if (err) next(err);
       res.redirect('/events');
     });
