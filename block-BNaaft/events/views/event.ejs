@@ -21,12 +21,16 @@
           <button>Search event by location</button>
         </form>
       </div>
+
+      <!-- category -->
       <div id="category">
-        <li>
-          <a href=""> Birthday </a>
-          <a href=""> marriage </a>
-        </li>
+        <% category.forEach(elm => { %>
+        <div>
+          <a href="/events/category/<%= elm%>"> <%= elm%> </a>
+        </div>
+        <% })%>
       </div>
+
       <ul>
         <%if(events.length) { %> <% events.forEach(event => { %>
         <li>

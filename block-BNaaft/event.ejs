@@ -12,3 +12,16 @@
   </li>
   <% }%>
 </ul>
+
+
+<div id="category">
+  <%if(category.length) { %> <% category.forEach(elm => { %>
+  <div>
+    <a href="/events/category/<%= elm%>"> <%= elm%> </a>
+  </div>
+</div>
+<% })%> <% } else {%>
+<h2></h2>
+
+<% }%>
+</div>
