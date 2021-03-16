@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Event = require('../models/event');
 var Remark = require('../models/remark');
+var moment = require('moment');
 
 /* GET users listing. */
 
@@ -21,10 +22,13 @@ router.get('/category/:type', (req, res, next) => {
 router.post('/search/city', (req, res, next) => {
   let category = [];
   let city = req.body.search;
-  Event.find({ location: city }).exec((err, events) => {
-    if (err) next(err);
-    res.render('event', { events: events, category: category });
-  });
+  // Event.find({ location: city }).exec((err, events) => {
+  Event.find({ location: { $regex: new RegExp(city, 'i') } }).exec(
+    (err, events) => {
+      if (err) next(err);
+      res.render('event', { events: events, category: category });
+    }
+  );
 });
 
 // filters events
@@ -69,7 +73,10 @@ router.get('/', (req, res) => {
 
     Event.distinct('category', (err, category) => {
       if (err) return next(err);
-      res.render('event', { events: events, category: category });
+      res.render('event', {
+        events: events,
+        category: category,
+      });
     });
   });
 });
@@ -159,20 +166,20 @@ router.get('/:id/dislike', (req, res, next) => {
 });
 
 // delete event
-router.get('/:id/delete', (req, res, next) => {
-  let id = req.params.id;
-  Event.findByIdAndDelete(id, (err, deletedEvent) => {
-    if (err) next(err);
-    res.redirect('/events');
-  });
-});
+// router.get('/:id/delete', (req, res, next) => {
+//   let id = req.params.id;
+//   Event.findByIdAndDelete(id, (err, deletedEvent) => {
+//     if (err) next(err);
+//     res.redirect('/events');
+//   });
+// });
 
 router.get('/:id/delete', (req, res, next) => {
   let id = req.params.id;
   Event.findByIdAndDelete(id, (err) => {
     if (err) next(err);
     Remark.deleteMany({ events: id }, (err, info) => {
-      console.log(err, info, '****');
+      // console.log(err, info, '****');
       if (err) next(err);
       res.redirect('/events');
     });
