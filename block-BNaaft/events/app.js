@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var moment = require('moment');
 
 var indexRouter = require('./routes/index');
 var eventRouter = require('./routes/events');

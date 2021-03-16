@@ -23,14 +23,16 @@
       </div>
 
       <!-- category -->
+      <%if(category.length) { %> <% category.forEach(elm => { %>
       <div id="category">
-        <% category.forEach(elm => { %>
         <div>
           <a href="/events/category/<%= elm%>"> <%= elm%> </a>
         </div>
-        <% })%>
       </div>
+      <% })%> <% } else {%>
+      <div></div>
 
+      <% }%>
       <ul>
         <%if(events.length) { %> <% events.forEach(event => { %>
         <li>
@@ -39,7 +41,11 @@
             <%= event.summary.substring(0,100).concat("....")%>
           </p>
           <p class="host">Host: <span><%= event.host%></span></p>
-          <p class="date">Start date: <span><%= event.start_date%></span></p>
+          <p class="date">
+            Start date:
+
+            <span><%= event.start_date%></span>
+          </p>
           <p class="date">End date: <span><%= event.end_date%></span></p>
 
           <p><span><%= event.category%></span></p>
