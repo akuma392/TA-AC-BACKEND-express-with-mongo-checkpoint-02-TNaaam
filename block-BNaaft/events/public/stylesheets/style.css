@@ -654,3 +654,9 @@ li h5 {
   color: greenyellow;
   text-decoration: underline;
 }
+
+.create {
+  background-color: rgb(26, 204, 228);
+  padding: 0.5rem;
+  color: #000;
+}
