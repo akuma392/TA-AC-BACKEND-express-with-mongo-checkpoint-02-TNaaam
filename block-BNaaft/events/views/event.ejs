@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="fullcontent">
+      <div class="sort">
+        <a href="/"> Home page </a>
+        <a href="/events/date"> Sort by Date </a>
+        <!-- <a href="/events/location"> Sort by location </a> -->
+        <!-- <a href="/events/category"> Sort by category </a> -->
+        <a class="create" href="/events/create"> Create event </a>
+      </div>
+      <div class="headings">
+        <h1>Lists of events</h1>
+        <h2>Welcome to the events Lists.</h2>
+      </div>
+      <div id="search">
+        <form action="/events/search/city" method="POST">
+          <input type="text" placeholder="search location" name="search" />
+          <button>Search event by location</button>
+        </form>
+      </div>
+
+      <!-- category -->
+      <%if(category.length) { %> <% category.forEach(elm => { %>
+      <div id="category">
+        <div>
+          <a href="/events/category/<%= elm%>"> <%= elm%> </a>
+        </div>
+      </div>
+      <% })%> <% } else {%>
+      <div></div>
+
+      <% }%>
+      <ul>
+        <%if(events.length) { %> <% events.forEach(event => { %>
+        <li id="card">
+          <h5><%= event.title%></h5>
+          <p class="summary">
+            <%= event.summary.substring(0,100).concat("....")%>
+          </p>
+          <p class="host">Hosted by: <span><%= event.host%></span></p>
+
+          <p class="date">
+            <span><%= moment(event.start_date).format("DD-MM-YYYY") %></span> to
+            <span><%= moment(event.end_date).format("DD-MM-YYYY")%></span>
+          </p>
+          <!-- <p class="date">
+            End date:
+            <span><%= moment(event.end_date).format("DD-MM-YYYY")%></span>
+          </p> -->
+
+          <p><span><%= event.category%></span></p>
+          <p class="like">Likes <span><%= event.likes%></span></p>
+          <p><i class="fas fa-map-marker-alt"></i> <%= event.location%></p>
+          <a href="/events/<%= event.id%>">
+            <button>See more</button>
+          </a>
+          <% })%> <% } else {%>
+          <h2 class="no-events">No events available</h2>
+        </li>
+        <% }%>
+      </ul>
+      <a href="/events/create">
+        <button>Create events</button>
+      </a>
+      <%- include('../partials/footer') -%>
+    </div>
+  </body>
+</html>
