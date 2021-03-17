@@ -12,7 +12,7 @@
       <a href="/"> Home page </a>
       <a href="/events"> Events </a>
     </header> -->
-    <div class="fullcontent">
+    <div class="fullcontent" id="single">
       <div id="event">
         <a href="/events"> Go to Events Lists </a>
       </div>
@@ -25,8 +25,12 @@
         <h5><%= event.title%></h5>
         <p class="summary"><%= event.summary%></p>
         <p class="host">Host: <span><%= event.host%></span></p>
-        <p class="date">Start date: <span><%= event.start_date%></span></p>
-        <p class="date">End date: <span><%= event.end_date%></span></p>
+        <p class="date">
+          Start date: <span><%= moment(event.start_date).format("LLLL")%></span>
+        </p>
+        <p class="date">
+          End date: <span><%= moment(event.start_date).format("LLLL")%></span>
+        </p>
 
         <p><span><%= event.category%></span></p>
         <p class="like">Likes <span><%= event.likes%></span></p>
