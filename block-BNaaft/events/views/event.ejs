@@ -36,22 +36,25 @@
       <% }%>
       <ul>
         <%if(events.length) { %> <% events.forEach(event => { %>
-        <li>
+        <li id="card">
           <h5><%= event.title%></h5>
           <p class="summary">
             <%= event.summary.substring(0,100).concat("....")%>
           </p>
-          <p class="host">Host: <span><%= event.host%></span></p>
-          <p class="date">
-            Start date:
+          <p class="host">Hosted by: <span><%= event.host%></span></p>
 
-            <span><%= event.start_date%></span>
+          <p class="date">
+            <span><%= moment(event.start_date).format("DD-MM-YYYY") %></span> to
+            <span><%= moment(event.end_date).format("DD-MM-YYYY")%></span>
           </p>
-          <p class="date">End date: <span><%= event.end_date%></span></p>
+          <!-- <p class="date">
+            End date:
+            <span><%= moment(event.end_date).format("DD-MM-YYYY")%></span>
+          </p> -->
 
           <p><span><%= event.category%></span></p>
           <p class="like">Likes <span><%= event.likes%></span></p>
-          <p class="loc"><%= event.location%></p>
+          <p><i class="fas fa-map-marker-alt"></i> <%= event.location%></p>
           <a href="/events/<%= event.id%>">
             <button>See more</button>
           </a>

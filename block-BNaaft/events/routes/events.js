@@ -76,6 +76,7 @@ router.get('/', (req, res) => {
       res.render('event', {
         events: events,
         category: category,
+        moment: moment,
       });
     });
   });
@@ -109,7 +110,7 @@ router.get('/:id', (req, res, next) => {
     .populate('remarks')
     .exec((err, event) => {
       if (err) next(err);
-      res.render('singleEvent', { event: event });
+      res.render('singleEvent', { event: event, moment: moment });
     });
 });
 
